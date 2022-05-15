@@ -3,39 +3,39 @@ require_once 'helpers.php';
 $is_auth = rand(0, 1);
 $gifs = [
     [
-        'заголовок' => 'Цитата',
-        'тип' => 'post-quote',
-        'содержимое' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
-        'Имя юзера' => 'Лариса',
-        'Аватар' => 'userpic-larisa-small.jpg'
+        'header' => 'Цитата',
+        'type' => 'post-quote',
+        'content' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
+        'username' => 'Лариса',
+        'avatar' => 'userpic-larisa-small.jpg'
     ],
     [
-        'заголовок' => 'Игра престолов',
-        'тип' => 'post-text',
-        'содержимое' => 'Не могу дождаться начала финального сезона своего любимого сериала!',
-        'Имя юзера' => 'Владик',
-        'Аватар' => 'userpic.jpg'
+        'header' => 'Игра престолов',
+        'type' => 'post-text',
+        'content' => 'Не могу дождаться начала финального сезона своего любимого сериала!',
+        'username' => 'Владик',
+        'avatar' => 'userpic.jpg'
     ],
     [
-        'заголовок' => 'Наконец, обработал фотки!',
-        'тип' => 'post-photo',
-        'содержимое' => 'rock-medium.jpg',
-        'Имя юзера' => 'Виктор',
-        'Аватар' => 'userpic-mark.jpg'
+        'header' => 'Наконец, обработал фотки!',
+        'type' => 'post-photo',
+        'content' => 'rock-medium.jpg',
+        'username' => 'Виктор',
+        'avatar' => 'userpic-mark.jpg'
     ],
     [
-        'заголовок' => 'Моя мечта',
-        'тип' => 'post-photo',
-        'содержимое' => 'coast-medium.jpg',
-        'Имя юзера' => 'Лариса',
-        'Аватар' => 'userpic-larisa-small.jpg'
+        'header' => 'Моя мечта',
+        'type' => 'post-photo',
+        'content' => 'coast-medium.jpg',
+        'username' => 'Лариса',
+        'avatar' => 'userpic-larisa-small.jpg'
     ],
     [
-        'заголовок' => 'Лучшие курсы',
-        'тип' => 'post-link',
-        'содержимое' => 'www.htmlacademy.ru',
-        'Имя юзера' => 'Владик',
-        'Аватар' => 'userpic.jpg'
+        'header' => 'Лучшие курсы',
+        'type' => 'post-link',
+        'content' => 'www.htmlacademy.ru',
+        'username' => 'Владик',
+        'avatar' => 'userpic.jpg'
     ],
 ];
 $user_name = 'Станислав'; // укажите здесь ваше имя
@@ -246,35 +246,35 @@ $user_name = 'Станислав'; // укажите здесь ваше имя
             <?php foreach ($gifs as $key => $val): ?>
             <article class="popular__post post">
                 <header class="post__header">
-                    <h2><?=$val['заголовок']; ?></h2>
+                    <h2><?=$val['header']; ?></h2>
                 </header>
                 <div class="post__main">
-                <?php if ($val['тип'] == 'post-quote'): ?>
+                <?php if ($val['type'] == 'post-quote'): ?>
                     <blockquote>
                         <p>
-                            <?=$val['содержимое']; ?>
+                            <?=$val['content']; ?>
                         </p>
                     </blockquote>
-                <?php elseif ($val['тип'] == 'post-text'): ?>
+                <?php elseif ($val['type'] == 'post-text'): ?>
                     <p>
-                    <?=$val['содержимое']; ?>
+                    <?=$val['content']; ?>
                     </p>
-                <?php elseif ($val['тип'] == 'post-photo'): ?>
+                <?php elseif ($val['type'] == 'post-photo'): ?>
                     <div class="post-photo__image-wrapper">
-                        <img src="img/<?=$val['содержимое']; ?>" alt="Фото от пользователя" width="360" height="240">
+                        <img src="img/<?=$val['content']; ?>" alt="Фото от пользователя" width="360" height="240">
                     </div>
-                <?php elseif ($val['тип'] == 'post-link'): ?>
+                <?php elseif ($val['type'] == 'post-link'): ?>
                     <div class="post-link__wrapper">
-                        <a class="post-link__external" href="<?=$val['содержимое']; ?>" title="Перейти по ссылке">
+                        <a class="post-link__external" href="<?=$val['content']; ?>" title="Перейти по ссылке">
                             <div class="post-link__info-wrapper">
                                 <div class="post-link__icon-wrapper">
-                                    <img src="https://www.google.com/s2/favicons?domain=<?=$val['содержимое']; ?>" alt="Иконка">
+                                    <img src="https://www.google.com/s2/favicons?domain=<?=$val['content']; ?>" alt="Иконка">
                                 </div>
                                 <div class="post-link__info">
-                                    <h3><?=$val['содержимое']; ?></h3>
+                                    <h3><?=$val['content']; ?></h3>
                                 </div>
                             </div>
-                            <span><?=$val['содержимое']; ?></span>
+                            <span><?=$val['content']; ?></span>
                         </a>
                     </div>
                 <?php endif; ?>
@@ -285,10 +285,10 @@ $user_name = 'Станислав'; // укажите здесь ваше имя
                         <a class="post__author-link" href="#" title="Автор">
                             <div class="post__avatar-wrapper">
                                 <!--укажите путь к файлу аватара-->
-                                <img class="post__author-avatar" src="img/<?=$val['Аватар'];?>" alt="Аватар пользователя">
+                                <img class="post__author-avatar" src="img/<?=$val['avatar'];?>" alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
-                                <b class="post__author-name"><?=$val['Имя юзера']; ?></b>
+                                <b class="post__author-name"><?=$val['username']; ?></b>
                                 <time class="post__time" datetime="">дата</time>
                             </div>
                         </a>
