@@ -38,30 +38,38 @@ $gifs = [
         'avatar' => 'userpic.jpg'
     ],
 ];
-function divideString($string, $limit = 300)
+/**
+ * Функция позволяет ограничить длину строки с обрезанием по целому слову. 
+ * 
+ * @param string $string Входная строка
+ * @param int $limit Максимально допустимое число символов. Если строка $string меньше входного лимита, будет возвращена строка, обернутая в тег <p>, в противном случае, к ней будет добавлена ссылка на полный пост. Значение параметра не может быть отрицательным.
+ * @return string Входная строка, влезающая в указанную длину по символам, обрамленная в теги p и a по необходимости.
+ * @param $words Слова из которых состоит входная строка
+ * @param $count Переменная используемая в качестве счетчика внутри цикла
+ * @param $splitString Строка в которую будут объеденины слова из массива для вывода
+ * @param $newWords Массив для заполнения словами
+ */
+function divideString(string $string, int $limit = 300)
 {
-
-    if (mb_strlen($string, "UTF-8") > $limit) {
-
-        $words = explode(" ", $string);
-        $count = 0;
-        $splitString = "";
-        $newWords = [];
-
-        foreach ($words as $elem) {
-            $count += mb_strlen($elem, "UTF-8");
-
-            if ($count < $limit) {
-                array_push($newWords, $elem);
-            };
-        };
-
-        $splitString = implode(" ", $newWords);
-
-        return "<p>{$splitString}...</p><a class=\"post-text__more-link\" href=\"#\">Читать далее</a>";
+    if (mb_strlen($string, 'UTF-8') < $limit) {
+        return "<p>{$string}</p>";
     }
+    $words = explode(" ", $string);
+    $count = 0;
+    $splitString = "";
+    $newWords = [];
 
-    return "<p>{$string}</p>";
+    foreach ($words as $elem) {
+        $count += mb_strlen($elem, "UTF-8");
+
+        if ($count < $limit) {
+            array_push($newWords, $elem);
+        };
+    };
+
+    $splitString = implode(" ", $newWords);
+
+    return "<p>{$splitString}...</p><a class=\"post-text__more-link\" href=\"#\">Читать далее</a>";
 };
 $user_name = 'Станислав'; // укажите здесь ваше имя
 ?>
@@ -339,35 +347,35 @@ $user_name = 'Станислав'; // укажите здесь ваше имя
                 <?php foreach ($gifs as $key => $val) : ?>
                     <article class="popular__post post">
                         <header class="post__header">
-                            <h2><?= $val['header']; ?></h2>
+                            <h2><?= htmlspecialchars($val['header']); ?></h2>
                         </header>
                         <div class="post__main">
-                            <?php if ($val['type'] == 'post-quote') : ?>
+                            <?php if (htmlspecialchars($val['type'] == 'post-quote')) : ?>
                                 <blockquote>
                                     <p>
-                                        <?= $val['content']; ?>
+                                        <?= htmlspecialchars($val['content']); ?>
                                     </p>
                                 </blockquote>
-                            <?php elseif ($val['type'] == 'post-text') : ?>
+                            <?php elseif (htmlspecialchars($val['type'] == 'post-text')) : ?>
                                 <p>
-                                    <?= divideString($val['content']) ?>
+                                    <?= divideString(htmlspecialchars($val['content'])) ?>
                                 </p>
-                            <?php elseif ($val['type'] == 'post-photo') : ?>
+                            <?php elseif (htmlspecialchars($val['type'] == 'post-photo')) : ?>
                                 <div class="post-photo__image-wrapper">
-                                    <img src="img/<?= $val['content']; ?>" alt="Фото от пользователя" width="360" height="240">
+                                    <img src="img/<?= htmlspecialchars($val['content']); ?>" alt="Фото от пользователя" width="360" height="240">
                                 </div>
-                            <?php elseif ($val['type'] == 'post-link') : ?>
+                            <?php elseif (htmlspecialchars($val['type'] == 'post-link')) : ?>
                                 <div class="post-link__wrapper">
-                                    <a class="post-link__external" href="<?= $val['content']; ?>" title="Перейти по ссылке">
+                                    <a class="post-link__external" href="<?= htmlspecialchars($val['content']); ?>" title="Перейти по ссылке">
                                         <div class="post-link__info-wrapper">
                                             <div class="post-link__icon-wrapper">
-                                                <img src="https://www.google.com/s2/favicons?domain=<?= $val['content']; ?>" alt="Иконка">
+                                                <img src="https://www.google.com/s2/favicons?domain=<?= htmlspecialchars($val['content']); ?>" alt="Иконка">
                                             </div>
                                             <div class="post-link__info">
-                                                <h3><?= $val['content']; ?></h3>
+                                                <h3><?= htmlspecialchars($val['content']); ?></h3>
                                             </div>
                                         </div>
-                                        <span><?= $val['content']; ?></span>
+                                        <span><?= htmlspecialchars($val['content']); ?></span>
                                     </a>
                                 </div>
                             <?php endif; ?>
@@ -378,10 +386,10 @@ $user_name = 'Станислав'; // укажите здесь ваше имя
                                 <a class="post__author-link" href="#" title="Автор">
                                     <div class="post__avatar-wrapper">
                                         <!--укажите путь к файлу аватара-->
-                                        <img class="post__author-avatar" src="img/<?= $val['avatar']; ?>" alt="Аватар пользователя">
+                                        <img class="post__author-avatar" src="img/<?= htmlspecialchars($val['avatar']); ?>" alt="Аватар пользователя">
                                     </div>
                                     <div class="post__info">
-                                        <b class="post__author-name"><?= $val['username']; ?></b>
+                                        <b class="post__author-name"><?= htmlspecialchars($val['username']); ?></b>
                                         <time class="post__time" datetime="">дата</time>
                                     </div>
                                 </a>
