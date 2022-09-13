@@ -48,6 +48,7 @@ $gifs = [
  * @param $count Переменная используемая в качестве счетчика внутри цикла
  * @param $splitString Строка в которую будут объеденины слова из массива для вывода
  * @param $newWords Массив для заполнения словами
+ * Функция возвращает string 
  */
 function divideString(string $string, int $limit = 300)
 {
@@ -350,26 +351,26 @@ $user_name = 'Станислав'; // укажите здесь ваше имя
                             <h2><?= htmlspecialchars($val['header']); ?></h2>
                         </header>
                         <div class="post__main">
-                            <?php if (htmlspecialchars($val['type'] == 'post-quote')) : ?>
+                            <?php if ($val['type'] === 'post-quote') : ?>
                                 <blockquote>
                                     <p>
                                         <?= htmlspecialchars($val['content']); ?>
                                     </p>
                                 </blockquote>
-                            <?php elseif (htmlspecialchars($val['type'] == 'post-text')) : ?>
+                            <?php elseif ($val['type'] === 'post-text') : ?>
                                 <p>
                                     <?= divideString(htmlspecialchars($val['content'])) ?>
                                 </p>
-                            <?php elseif (htmlspecialchars($val['type'] == 'post-photo')) : ?>
+                            <?php elseif ($val['type'] === 'post-photo') : ?>
                                 <div class="post-photo__image-wrapper">
-                                    <img src="img/<?= htmlspecialchars($val['content']); ?>" alt="Фото от пользователя" width="360" height="240">
+                                    <img src="img/<?= $val['content']; ?>" alt="Фото от пользователя" width="360" height="240">
                                 </div>
-                            <?php elseif (htmlspecialchars($val['type'] == 'post-link')) : ?>
+                            <?php elseif ($val['type'] === 'post-link') : ?>
                                 <div class="post-link__wrapper">
-                                    <a class="post-link__external" href="<?= htmlspecialchars($val['content']); ?>" title="Перейти по ссылке">
+                                    <a class="post-link__external" href="<?= $val['content']; ?>" title="Перейти по ссылке">
                                         <div class="post-link__info-wrapper">
                                             <div class="post-link__icon-wrapper">
-                                                <img src="https://www.google.com/s2/favicons?domain=<?= htmlspecialchars($val['content']); ?>" alt="Иконка">
+                                                <img src="https://www.google.com/s2/favicons?domain=<?= $val['content']; ?>" alt="Иконка">
                                             </div>
                                             <div class="post-link__info">
                                                 <h3><?= htmlspecialchars($val['content']); ?></h3>
@@ -386,7 +387,7 @@ $user_name = 'Станислав'; // укажите здесь ваше имя
                                 <a class="post__author-link" href="#" title="Автор">
                                     <div class="post__avatar-wrapper">
                                         <!--укажите путь к файлу аватара-->
-                                        <img class="post__author-avatar" src="img/<?= htmlspecialchars($val['avatar']); ?>" alt="Аватар пользователя">
+                                        <img class="post__author-avatar" src="img/<?= $val['avatar']; ?>" alt="Аватар пользователя">
                                     </div>
                                     <div class="post__info">
                                         <b class="post__author-name"><?= htmlspecialchars($val['username']); ?></b>
