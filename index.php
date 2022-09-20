@@ -85,5 +85,3 @@ $pageInfo = [
 $layout = include_template('layout.php', $pageInfo);
 
 print($layout);
-
-?>

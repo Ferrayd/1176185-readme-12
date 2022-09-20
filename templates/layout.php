@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var integer $is_auth
+ * @var string $page_content
+ * @var string $title
+ */
+ ?>
 <!DOCTYPE html>
 <html lang="ru">
 
