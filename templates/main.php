@@ -1,6 +1,7 @@
 <?php
 /**
  * @var array $gifs
+ * @var 
  */
  ?>
 <section class="page__main page__main--popular">
@@ -138,7 +139,7 @@
                                     </div>
                                     <div class="post__info">
                                         <b class="post__author-name"><?= htmlspecialchars($val['username']); ?></b>
-                                        <time class="post__time" datetime="">дата</time>
+                                        <time class="post__time" datetime="<?= getPublicationTime($key) ?>" title="<?= getFormatTime($key); ?>"><?= getRelativeFormat($key); ?></time>
                                     </div>
                                 </a>
                             </div>
@@ -164,9 +165,8 @@
                                 </div>
                             </div>
                         </footer>
-                    <?php endforeach; ?>
                     </article>
-
+                    <?php endforeach; ?>
             </div>
         </div>
     </section>
