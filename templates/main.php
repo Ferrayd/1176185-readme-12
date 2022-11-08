@@ -96,24 +96,24 @@
                 <?php foreach ($gifs as $key => $val) : ?>
                     <article class="popular__post post">
                         <header class="post__header">
-                            <h2><?= htmlspecialchars($val['header']); ?></h2>
+                            <h2><?= htmlspecialchars($val['title']); ?></h2>
                         </header>
                         <div class="post__main">
-                            <?php if ($val['type'] === 'post-quote') : ?>
+                            <?php if ($val['icon_class'] === $types[0]) : ?>
                                 <blockquote>
                                     <p>
                                         <?= htmlspecialchars($val['content']); ?>
                                     </p>
                                 </blockquote>
-                            <?php elseif ($val['type'] === 'post-text') : ?>
+                            <?php elseif ($val['icon_class'] === $types[1]) : ?>
                                 <p>
                                     <?= divideString(htmlspecialchars($val['content'])) ?>
                                 </p>
-                            <?php elseif ($val['type'] === 'post-photo') : ?>
+                            <?php elseif ($val['icon_class'] === $types[2]) : ?>
                                 <div class="post-photo__image-wrapper">
                                     <img src="img/<?= $val['content']; ?>" alt="Фото от пользователя" width="360" height="240">
                                 </div>
-                            <?php elseif ($val['type'] === 'post-link') : ?>
+                            <?php elseif ($val['icon_class'] === $types[3]) : ?>
                                 <div class="post-link__wrapper">
                                     <a class="post-link__external" href="<?= $val['content']; ?>" title="Перейти по ссылке">
                                         <div class="post-link__info-wrapper">
@@ -124,7 +124,7 @@
                                                 <h3><?= htmlspecialchars($val['content']); ?></h3>
                                             </div>
                                         </div>
-                                        <span><?= htmlspecialchars($val['content']); ?></span>
+                                        <span><?= htmlspecialchars($val['link']); ?></span>
                                     </a>
                                 </div>
                             <?php endif; ?>
@@ -138,7 +138,7 @@
                                         <img class="post__author-avatar" src="img/<?= $val['avatar']; ?>" alt="Аватар пользователя">
                                     </div>
                                     <div class="post__info">
-                                        <b class="post__author-name"><?= htmlspecialchars($val['username']); ?></b>
+                                        <b class="post__author-name"><?= htmlspecialchars($val['login']); ?></b>
                                         <time class="post__time" datetime="<?= getPublicationTime($key) ?>" title="<?= getFormatTime($key); ?>"><?= getRelativeFormat($key); ?></time>
                                     </div>
                                 </a>
@@ -152,7 +152,7 @@
                                         <svg class="post__indicator-icon post__indicator-icon--like-active" width="20" height="17">
                                             <use xlink:href="#icon-heart-active"></use>
                                         </svg>
-                                        <span>0</span>
+                                        <span><?= htmlspecialchars($val['views']) ?></span>
                                         <span class="visually-hidden">количество лайков</span>
                                     </a>
                                     <a class="post__indicator post__indicator--comments button" href="#" title="Комментарии">
