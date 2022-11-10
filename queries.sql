@@ -1,5 +1,5 @@
 /*добавляет список типов контента для поста*/
-INSERT INTO content_type (title, icon_class)
+INSERT INTO content_type (title, content_class)
 VALUES
 ('Цитата', 'post-quote'),
 ('Текст', 'post-text'),
@@ -12,11 +12,13 @@ VALUES
 ('2022.01.02 23:24:21', 'vl@mail.ru', 'Влад', 'vlad', 'userpic1.jpg'),
 ('2022.06.22 15:24:25', 'igor@yandex.ru', 'Игорь', 'igor', 'userpic2.jpg'),
 ('2022.08.13 12:02:43', 'artem@yandex.ru', 'Артем', 'artem', 'userpic3.jpg');
+('2022.08.13 12:02:43', 'lar@yandex.ru', 'Лариса', 'lar', 'userpic-larisa-small.jpg');
+('2022.08.13 12:02:43', 'aiv@yandex.ru', 'Иван', 'ivan', 'userpic4.jpg');
 
 /*добавляет существующий список постов*/
 INSERT INTO posts (title, content, views, author_id, type_id)
 VALUES
-('Цитата', 'Мы в жизни любим только раз, а после ищем лишь похожих', 100, 1, 1),
+('Цитата', 'Мы в жизни любим только раз, а после ищем лишь похожих', 100, 1, 4),
 ('Игра престолов', 'Не могу дождаться начала финального сезона своего любимого сериала!', 5000, 2, 2),
 ('Наконец, обработал фотки!', 'rock-medium.jpg', 150, 3, 3),
 ('Моя мечта', 'coast-medium.jpg', 10000, 1, 3);
@@ -29,7 +31,7 @@ VALUES
 ('2022.03.08 12:01:23', 'Лучше курсов не стречал!', 3, 2);
 
 /*получает список постов с сортировкой по популярности и вместе с именами авторов и типом контента;*/
-SELECT p.*, ct.title, u.login
+SELECT p.*, ct.title, u.login, u.avatar
 FROM posts AS p
 JOIN content_type ct ON p.type_id = ct.id
 JOIN users u ON p.author_id = u.id
