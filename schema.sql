@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE content_type (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
-  icon_class VARCHAR(255) NOT NULL
+  content_class VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE hashtags (
@@ -104,7 +104,7 @@ CREATE TABLE dialog (
   FOREIGN KEY (messages_id) REFERENCES messages (id) on update cascade on delete cascade
 );
 
-INSERT INTO content_type (title, icon_class)
+INSERT INTO content_type (title, content_class)
 VALUES
 ('Цитата', 'post-quote'),
 ('Текст', 'post-text'),

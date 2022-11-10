@@ -1,5 +1,5 @@
 /*добавляет список типов контента для поста*/
-INSERT INTO content_type (title, icon_class)
+INSERT INTO content_type (title, content_class)
 VALUES
 ('Цитата', 'post-quote'),
 ('Текст', 'post-text'),

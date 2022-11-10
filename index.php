@@ -1,16 +1,6 @@
 <?php
 require_once 'helpers.php';
-
-$connect = mysqli_connect("localhost", "root", "", "readme");
-mysqli_set_charset($connect, "utf8mb4");
-
-if ($connect === false) {
-    print("Ошибка подключения: " . mysqli_connect_error());
-}
-
-$query = "SELECT p.*, ct.title, ct.icon_class, u.login, u.avatar FROM posts AS p JOIN content_type ct ON p.type_id = ct.id JOIN users u ON p.author_id = u.id ORDER BY p.views DESC LIMIT 6";
-$result = mysqli_query($connect, $query);
-$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+require('connect.php');
 
 /**
  * Функция позволяет ограничить длину строки с обрезанием по целому слову. 
@@ -90,10 +80,10 @@ function getRelativeFormat($index) {
     return $timeDifference;
 };
 
+/*$posts = include_template('connect.php');*/
 
 $page_content = include_template('main.php', [
-    'gifs' => $posts,
-
+    'posts' => $posts,
 ]);
 
 $pageInfo = [

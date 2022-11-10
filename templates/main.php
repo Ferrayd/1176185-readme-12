@@ -1,6 +1,6 @@
 <?php
 /**
- * @var array $gifs
+ * @var array $posts
  * @var 
  */
  ?>
@@ -93,27 +93,27 @@
             <div class="popular__posts">
 
 
-                <?php foreach ($gifs as $key => $val) : ?>
+                <?php foreach ($posts as $key => $val) : ?>
                     <article class="popular__post post">
                         <header class="post__header">
                             <h2><?= htmlspecialchars($val['title']); ?></h2>
                         </header>
                         <div class="post__main">
-                            <?php if ($val['icon_class'] === $types[0]) : ?>
+                            <?php if ($val['content_class'] === $types[0]) : ?>
                                 <blockquote>
                                     <p>
                                         <?= htmlspecialchars($val['content']); ?>
                                     </p>
                                 </blockquote>
-                            <?php elseif ($val['icon_class'] === $types[1]) : ?>
+                            <?php elseif ($val['content_class'] === $types[1]) : ?>
                                 <p>
                                     <?= divideString(htmlspecialchars($val['content'])) ?>
                                 </p>
-                            <?php elseif ($val['icon_class'] === $types[2]) : ?>
+                            <?php elseif ($val['content_class'] === $types[2]) : ?>
                                 <div class="post-photo__image-wrapper">
                                     <img src="img/<?= $val['content']; ?>" alt="Фото от пользователя" width="360" height="240">
                                 </div>
-                            <?php elseif ($val['icon_class'] === $types[3]) : ?>
+                            <?php elseif ($val['content_class'] === $types[3]) : ?>
                                 <div class="post-link__wrapper">
                                     <a class="post-link__external" href="<?= $val['content']; ?>" title="Перейти по ссылке">
                                         <div class="post-link__info-wrapper">
